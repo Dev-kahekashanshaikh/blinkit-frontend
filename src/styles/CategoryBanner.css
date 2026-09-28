@@ -1,0 +1,15 @@
+.category-banner {
+    display: flex;
+    justify-content: flex-start;
+
+    align-items: center;
+    background-color: #ffff;
+    gap: 0px;
+
+
+}
+
+.category-banner-content {
+    margin-left: 15px;
+    width: 25%;
+}

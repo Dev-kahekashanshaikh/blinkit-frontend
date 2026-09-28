@@ -1,0 +1,200 @@
+/* ==================================================
+   LOCATION SECTION MODAL
+   Compact sizing: smaller fonts, tighter height/width
+================================================== */
+
+/* Overall modal box */
+.location-modal .modal-content {
+  border-radius: 10px;
+}
+
+.location-modal.modal-lg {
+  max-width: 480px; /* narrower than default modal-lg (800px) */
+}
+
+.location-modal-body {
+  padding: 18px 20px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.location-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.location-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.location-close {
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  color: #555;
+}
+
+
+/* ==================================================
+   DETECT LOCATION + SEARCH ROW
+================================================== */
+
+.location-search-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.location-detect-btn {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  height: 34px;
+  white-space: nowrap;
+  border-radius: 6px;
+}
+
+.location-or {
+  font-size: 0.7rem;
+  color: #888;
+  flex-shrink: 0;
+}
+
+.location-search-box {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  height: 34px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 10px;
+}
+
+.location-search-icon {
+  font-size: 0.75rem;
+  color: #888;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.location-search-input {
+  font-size: 0.8rem;
+  width: 100%;
+}
+
+
+/* ==================================================
+   SAVED ADDRESSES
+================================================== */
+
+.location-saved-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.location-address-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.location-address-card {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.location-address-card:hover {
+  background-color: #f9f9f9;
+}
+
+.location-address-icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #f0f0f0;
+  font-size: 0.8rem;
+}
+
+.location-address-body {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.location-address-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.location-address-text {
+  font-size: 0.72rem;
+  color: #777;
+  line-height: 1.3;
+}
+
+.location-address-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.location-icon-btn {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 576px) {
+  .location-modal.modal-lg {
+    max-width: 92vw;
+    margin: 0 auto;
+  }
+
+  .location-modal-body {
+    padding: 14px;
+    max-height: 80vh;
+  }
+
+  .location-search-row {
+    flex-wrap: wrap;
+  }
+
+  .location-detect-btn {
+    font-size: 0.72rem;
+    height: 32px;
+  }
+
+  .location-address-text {
+    font-size: 0.68rem;
+  }
+}

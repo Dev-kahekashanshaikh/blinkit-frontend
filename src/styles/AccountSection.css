@@ -1,0 +1,114 @@
+/* ==================================================
+   ACCOUNT SECTION DROPDOWN
+   Compact sizing: smaller fonts, tighter spacing
+================================================== */
+
+.account-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #212529;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.account-menu {
+  width: 260px; /* was ~340px */
+  padding: 14px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.account-header {
+  margin-bottom: 6px;
+}
+
+.account-header-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.account-header-phone {
+  font-size: 0.75rem;
+  color: #777;
+}
+
+.account-divider {
+  margin: 8px 0;
+}
+
+
+/* ==================================================
+   MENU LINKS
+================================================== */
+
+.account-menu-item {
+  padding: 6px 0 !important;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #212529 !important;
+}
+
+
+/* ==================================================
+   QR FOOTER
+================================================== */
+
+.account-qr-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.account-qr-img {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.account-qr-info {
+  min-width: 0;
+}
+
+.account-qr-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.account-qr-highlight {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #2563eb;
+  line-height: 1.2;
+}
+
+.account-qr-subtext {
+  font-size: 0.62rem;
+  color: #888;
+  line-height: 1.2;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 576px) {
+  .account-menu {
+    width: 88vw;
+    padding: 12px;
+  }
+
+  .account-qr-img {
+    width: 52px;
+    height: 52px;
+  }
+}

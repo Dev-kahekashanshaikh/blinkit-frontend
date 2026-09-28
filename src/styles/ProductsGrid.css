@@ -1,0 +1,158 @@
+/* ProductsGrid.css */
+
+.products-section {
+  padding: 24px 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.products-heading {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+.products-status {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 16px;
+}
+
+/* ---------- Card ---------- */
+.product-card {
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  background: #fff;
+  height: 100%;
+}
+
+.product-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ---------- Image ---------- */
+.product-image-wrapper {
+  width: 100%;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+  padding: 10px;
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* ---------- Body ---------- */
+.product-body {
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.delivery-time {
+  font-size: 12px;
+  color: #007b55;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.product-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-category {
+  font-size: 13px;
+  color: #757575;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Bottom row: price + Add button ---------- */
+.product-bottom {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.product-price {
+  font-size: 15px;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.add-button {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: 6px;
+  border-width: 1.5px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.add-button:hover {
+  background-color: #198754;
+  color: #fff;
+}
+
+/* ---------- Responsive tweaks ---------- */
+
+/* Small phones */
+@media (max-width: 400px) {
+  .product-image-wrapper {
+    height: 130px;
+  }
+
+  .product-title,
+  .product-category {
+    font-size: 12.5px;
+  }
+
+  .product-price {
+    font-size: 13px;
+  }
+
+  .add-button {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+}
+
+/* Tablets */
+@media (min-width: 576px) and (max-width: 991px) {
+  .product-image-wrapper {
+    height: 150px;
+  }
+}
+
+/* Large desktops - keep cards from getting too tall/wide */
+@media (min-width: 1200px) {
+  .product-image-wrapper {
+    height: 180px;
+  }
+}

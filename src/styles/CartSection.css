@@ -1,0 +1,326 @@
+/* ==================================================
+   CART SECTION OFFCANVAS
+   Compact sizing: smaller fonts, tighter spacing
+================================================== */
+
+.cart-offcanvas {
+  width: 340px !important; /* was 400px */
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-back-icon {
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.cart-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.cart-share {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #16a34a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+
+/* ==================================================
+   BODY
+================================================== */
+
+.cart-body {
+  padding: 10px;
+  background-color: #f6f6f6;
+  font-size: 0.8rem;
+}
+
+.cart-muted {
+  color: #888;
+  font-size: 0.68rem;
+}
+
+.cart-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+
+/* ==================================================
+   SAVINGS BANNERS
+================================================== */
+
+.cart-savings-banner {
+  background: #eaf1ff;
+  color: #2563eb;
+  font-weight: 600;
+  font-size: 0.78rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+}
+
+.cart-upsell-banner {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.cart-upsell-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.78rem;
+}
+
+.cart-upsell-banner small {
+  font-size: 0.65rem;
+}
+
+
+/* ==================================================
+   DELIVERY / ITEM ROW
+================================================== */
+
+.cart-delivery-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.cart-delivery-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #f0f0f0;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.cart-delivery-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.cart-item-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-item-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.cart-item-info {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.cart-item-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.cart-item-price {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.cart-item-mrp {
+  font-size: 0.68rem;
+  color: #888;
+  text-decoration: line-through;
+}
+
+.cart-qty-control {
+  display: flex;
+  align-items: center;
+  background: #16a34a;
+  border-radius: 6px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.cart-qty-btn {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 0.8rem;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  line-height: 1;
+}
+
+.cart-qty-value {
+  font-size: 0.75rem;
+  padding: 0 6px;
+}
+
+
+/* ==================================================
+   BILL DETAILS
+================================================== */
+
+.cart-section-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.cart-bill-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  margin-bottom: 6px;
+}
+
+.cart-saved-badge {
+  background: #eaf1ff;
+  color: #2563eb;
+  font-size: 0.62rem;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin-left: 4px;
+}
+
+.cart-divider {
+  margin: 6px 0;
+}
+
+.cart-grand-total {
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+
+/* ==================================================
+   DONATION
+================================================== */
+
+.cart-donation {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.cart-donation-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #fde8e8;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.cart-donation-info {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.cart-donation-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.cart-donation-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.cart-donation-checkbox {
+  width: 14px;
+  height: 14px;
+}
+
+
+/* ==================================================
+   FOOTER / PROCEED BUTTON
+================================================== */
+
+.cart-footer {
+  padding: 10px 12px;
+  border-top: 1px solid #eee;
+  background: #fff;
+}
+
+.cart-proceed-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+}
+
+.cart-proceed-label {
+  font-size: 0.6rem;
+}
+
+.cart-proceed-text {
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 576px) {
+  .cart-offcanvas {
+    width: 92vw !important;
+  }
+
+  .cart-body {
+    padding: 8px;
+  }
+
+  .cart-card {
+    padding: 8px;
+  }
+}

@@ -1,0 +1,423 @@
+/* ==================================================
+   BLINKIT NAVBAR
+================================================== */
+
+.blinkit-navbar {
+  width: 100%;
+  min-height: 70px;
+  padding: 10px 10px;
+  margin: 0;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ==================================================
+   MAIN CONTAINER
+================================================== */
+
+.blinkit-navbar-container {
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+
+/* ==================================================
+   LOGO
+   DESKTOP = 10%
+================================================== */
+
+.blinkit-logo-section {
+  width: 10%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.blinkit-logo {
+  margin: 0;
+  font-size: 3rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.blinkit-logo .logo-name1 {
+  color: rgb(248 203 70) !important;
+  font-size: larger;
+}
+.blinkit-logo .logo-name2 {
+  color: #16a34a !important;
+  font-size: larger;
+}
+
+
+/* ==================================================
+   LOCATION
+   DESKTOP = 30%
+================================================== */
+
+.blinkit-location-section {
+  width: 30%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.location-icon {
+  flex-shrink: 0;
+  font-size: 20px;
+  color: #16a34a;
+}
+
+.location-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.location-label {
+  font-size: 12px;
+  color: #777;
+  line-height: 1.2;
+}
+
+.location-text {
+  max-width: 220px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* ==================================================
+   SEARCH
+   DESKTOP = 40%
+================================================== */
+
+.blinkit-search-section {
+  width: 40%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.blinkit-search-form {
+  width: 100%;
+  position: relative; /* anchor for the icon */
+  display: flex;
+  align-items: center;
+}
+
+/* Icon sits ON TOP of the input, not beside it */
+.blinkit-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #6b7280;
+  pointer-events: none; /* clicks pass through to the input */
+  z-index: 2;
+}
+
+.blinkit-search-input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  /* left padding makes room for the icon so text never overlaps it */
+  padding: 8px 14px 8px 40px;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.blinkit-search-input:focus {
+  border-color: #16a34a !important;
+}
+
+
+/* ==================================================
+   LOGIN + ACCOUNT + CART
+   DESKTOP = 20%
+================================================== */
+
+.blinkit-actions-section {
+  width: 20%;
+  flex-shrink: 0;
+  padding-left: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  box-sizing: border-box;
+}
+
+/* Account dropdown toggle (plain text + caret, react-bootstrap adds the caret) */
+.account-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #212529;
+  white-space: nowrap;
+}
+
+.blinkit-cart-button {
+  min-height: 44px;
+  width: auto;
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px;
+  white-space: nowrap;
+  color: #ffffff;
+}
+
+.blinkit-cart-button .cart-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.blinkit-cart-button .cart-icon svg {
+  display: block;
+}
+
+.blinkit-cart-button .cart-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  line-height: 1.25;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.blinkit-cart-button:hover {
+  background-color: #15803d !important;
+  border-color: #15803d !important;
+}
+
+
+/* ==================================================
+   TABLET
+   991px AND BELOW
+================================================== */
+
+@media (max-width: 991px) {
+  .blinkit-navbar-container {
+    flex-wrap: wrap;
+    row-gap: 12px;
+  }
+
+  .blinkit-logo-section {
+    width: 20%;
+  }
+
+  .blinkit-location-section {
+    width: 35%;
+  }
+
+  .blinkit-actions-section {
+    width: 45%;
+    padding-left: 10px;
+  }
+
+  .blinkit-search-section {
+    width: 100%;
+    order: 10;
+  }
+
+  .blinkit-search-form {
+    width: 100%;
+  }
+}
+
+
+/* ==================================================
+   MOBILE
+   767px AND BELOW
+================================================== */
+
+@media (max-width: 767px) {
+  .blinkit-navbar {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .blinkit-navbar-container {
+    width: 100%;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .blinkit-logo-section {
+    width: 50% !important;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    flex: 0 0 50%;
+  }
+
+  .blinkit-logo {
+    font-size: 1.4rem;
+  }
+
+  .blinkit-location-section {
+    width: 50% !important;
+    height: 42px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 0 0 50%;
+    overflow: hidden;
+  }
+
+  .location-content {
+    max-width: 130px;
+    min-width: 0;
+  }
+
+  .location-text {
+    max-width: 130px;
+    font-size: 12px;
+  }
+
+  .location-label {
+    font-size: 10px;
+  }
+
+  .location-icon {
+    font-size: 17px;
+  }
+
+  .blinkit-search-section {
+    width: 100% !important;
+    flex: 0 0 100%;
+    order: 3;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .blinkit-search-form {
+    width: 100% !important;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+  }
+
+  .blinkit-search-input {
+    width: 100% !important;
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 44px;
+  }
+
+  .blinkit-actions-section {
+    width: 100% !important;
+    flex: 0 0 100%;
+    order: 4;
+    padding: 0;
+    margin-top: 2px;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .blinkit-cart-button {
+    width: calc(50% - 5px) !important;
+    max-width: none;
+    min-height: 42px;
+    flex: 1 1 50%;
+  }
+}
+
+
+/* ==================================================
+   SMALL MOBILE
+   576px AND BELOW
+================================================== */
+
+@media (max-width: 576px) {
+  .blinkit-navbar-container {
+    padding: 0 8px;
+  }
+
+  .blinkit-logo {
+    font-size: 1.3rem;
+  }
+
+  .location-content {
+    max-width: 110px;
+  }
+
+  .location-text {
+    max-width: 110px;
+    font-size: 11px;
+  }
+
+  .account-toggle,
+  .blinkit-cart-button {
+    font-size: 13px;
+  }
+}
+
+
+/* ==================================================
+   VERY SMALL MOBILE
+   400px AND BELOW
+================================================== */
+
+@media (max-width: 400px) {
+  .blinkit-navbar-container {
+    padding: 0 6px;
+  }
+
+  .blinkit-logo-section {
+    width: 45% !important;
+    flex-basis: 45%;
+  }
+
+  .blinkit-location-section {
+    width: 55% !important;
+    flex-basis: 55%;
+  }
+
+  .location-content {
+    max-width: 100px;
+  }
+
+  .location-text {
+    max-width: 100px;
+    font-size: 10px;
+  }
+
+  .blinkit-cart-button {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+}
