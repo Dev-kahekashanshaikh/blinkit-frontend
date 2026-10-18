@@ -2,14 +2,22 @@ import React, { useState } from "react";
 import CartSection from "./CartSection";
 import AccountSection from "./AccountSection";
 import LocationSection from "./LocationSection";
-
+import { useCart } from "../context/CartContext";
 import { Navbar as BootstrapNavbar, Form } from "react-bootstrap";
+import { useAuthModal } from "../context/AuthModalContext";
+
 
 import { FaMapMarkerAlt, FaShoppingCart, FaSearch } from "react-icons/fa";
 
 import "../styles/Navbar.css";
 
 const Navbar = () => {
+
+// Access the authentication modal context
+   const { openAuthModal,user } = useAuthModal();
+
+
+  const { itemsTotal, numberOfItems } = useCart();
 
   // Toggle the AccountSection right side
   const [showCart, setShowCart] = useState(false);
@@ -68,11 +76,13 @@ const Navbar = () => {
         <div className="blinkit-search-section">
           <Form className="blinkit-search-form">
             <FaSearch className="blinkit-search-icon" />
+
             <Form.Control
               type="search"
-              placeholder=""
+              placeholder="Search for products..."
               className="blinkit-search-input"
             />
+
           </Form>
         </div>
 
@@ -80,7 +90,17 @@ const Navbar = () => {
             ACTIONS
         ========================== */}
         <div className="blinkit-actions-section">
-          <AccountSection />
+         
+
+      {user ?   <AccountSection /> : (
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              onClick={() => openAuthModal("login")}
+            >
+              Login
+            </button>
+          )  }
 
           <button
             type="button"
@@ -91,9 +111,8 @@ const Navbar = () => {
               <FaShoppingCart />
             </span>
             <span className="cart-text d-flex flex-column align-items-start">
-              <span>{cartItemCount} items</span>
-              <span>₹{cartTotal}</span>
-            </span>
+              <span>{numberOfItems} items</span>
+              <span>₹{Number(itemsTotal || 0).toFixed(2)}</span>            </span>
           </button>
 
           <CartSection show={showCart} handleClose={() => setShowCart(false)} />

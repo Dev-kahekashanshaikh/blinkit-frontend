@@ -6,6 +6,7 @@
   background: #f7f7f7;
   min-height: 100vh;
   padding: 20px 15px 50px;
+ 
 }
 
 
@@ -171,6 +172,7 @@
 
 .products-column {
   padding-left: 8px;
+
 }
 
 
@@ -190,8 +192,12 @@
   gap: 10px;
 
   width: 100%;
+
 }
 
+.products-grid a{
+  text-decoration: none;
+}
 
 /* =================================
    PRODUCT CARD
@@ -205,6 +211,7 @@
   border: 1px solid #e5e5e5;
 
   border-radius: 9px;
+         text-decoration: none;
 
   background: #ffffff;
 
@@ -213,6 +220,7 @@
   transition:
     box-shadow 0.2s ease,
     transform 0.2s ease;
+    
 }
 
 .product-card:hover {
@@ -260,6 +268,7 @@
 .product-card .card-body {
   /* padding: 10px; */
   padding: 7px 8px 8px;
+
 }
 
 
@@ -300,15 +309,13 @@
   /* font-size: 14px; */
 
   font-weight: 500;
-  font-size: 11px;
-  line-height: 1.25;
+  font-size: 15px;
+  line-height: 2.5;
 
   height: 28px;
   margin-bottom: 5px;
 
   overflow: hidden;
-
-
 
   display: -webkit-box;
 

@@ -8,6 +8,7 @@ import '../styles/SelectedProduct.css';
 import { useCategory } from '../context/CategoryContext';
 import ProductsGrid from '../components/ProductsGrid';
 import CategoryList from '../components/CategoryList';
+import '../styles/CategoryList.css'
 
 const SelectedProduct = () => {
 
@@ -119,6 +120,7 @@ const SelectedProduct = () => {
 
     const price = product.price;
 
+
     const ratingCount = product.rating?.count ?? 0;
 
 
@@ -132,11 +134,9 @@ const SelectedProduct = () => {
 
     const packSize = `${ratingCount} pcs`;
 
-    const discount = 41;
+    const mrp = price;
 
-    const mrp = Math.round(
-        price * (1 + discount / 100)
-    );
+    const discount = ((mrp - price) / mrp) * 100;
 
 
 
@@ -158,6 +158,7 @@ const SelectedProduct = () => {
          ========================================================== */}
             <div className='container parent-section'>
                 <ProductCard
+                    product={product}
                     image={image}
                     title={title}
                     category={category}
@@ -187,7 +188,7 @@ map that list here we are passing category related data from categoryContext
 
 
 
-<CategoryList />
+                <CategoryList />
 
 
 

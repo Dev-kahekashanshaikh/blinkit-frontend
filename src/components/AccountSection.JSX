@@ -1,6 +1,9 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 
+
 function AccountSection({ phoneNumber = '7447267276', onLogout }) {
+
+
   const menuItems = [
     { label: 'My Orders', href: '/orders' },
     { label: 'Saved Addresses', href: '/addresses' },
@@ -19,6 +22,7 @@ function AccountSection({ phoneNumber = '7447267276', onLogout }) {
         className="d-flex align-items-center gap-1 fw-semibold"
         style={{ cursor: 'pointer', fontSize: '1.1rem', color: '#212529' }}
       >
+        
         Account
       </Dropdown.Toggle>
 

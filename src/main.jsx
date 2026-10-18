@@ -5,17 +5,23 @@ import './index.css'
 import App from './App.jsx'
 import { ProductProvider } from './context/ProductContext.jsx';
 import {CategoryProvider} from './context/CategoryContext.jsx';
+import { CartProvider } from './context/CartContext.jsx';
+import { AuthModalProvider } from './context/AuthModalContext.jsx';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+  <AuthModalProvider>
 <BrowserRouter>
+<CartProvider>
 <CategoryProvider>
     <ProductProvider>
       <App />
     </ProductProvider>
     </CategoryProvider>
+    </CartProvider>
 </BrowserRouter>
+</AuthModalProvider>
   </StrictMode>,
 )

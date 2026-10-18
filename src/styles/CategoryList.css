@@ -1,28 +1,38 @@
-.category-list{
+.category-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: stretch;      /* all cards same height in a row */
     margin-top: 20px;
+    margin-bottom: 100px;
+    gap: 30px;
 }
-.category-list-content{
+
+.category-list-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100px;
-    height: 100px;
-    margin-bottom: 20px;
+    width: 100px;              /* fixed width, no fixed height */
+    padding: 5px;
     text-align: center;
-    border: 2px solid #ccc;
-        
+    background-color: rgb(236 244 254);
+    border-radius: 5px;
+    text-decoration: none;
+    flex: none;
+}
 
-}
-.category-list-content img{
+.category-list-content img {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
-    /* border: 2px solid #ccc; */
+    height: 100px;             /* fixed image box, same for every card */
+    object-fit: cover;       /* use "cover" if you want images to fill the box */
+    border: none;
+    border-radius: 10px;
 }
-.category-list-content h3{
+
+.category-list-content h3 {
+    margin-top: auto;
+    margin: 8px 0 0;
     font-size: 14px;
-    /* margin-top: 10px; */
+    line-height: 1.2;
+    color: black;
 }

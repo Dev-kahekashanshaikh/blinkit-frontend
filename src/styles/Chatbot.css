@@ -1,0 +1,376 @@
+
+/* Main chatbot container */
+.chatbot-container {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  font-family: Arial, sans-serif;
+}
+
+/* Floating chat button */
+.chatbot-toggle {
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  background: #00a86b;
+  color: #ffffff;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.chatbot-toggle:hover {
+  background: #008f5b;
+  transform: scale(1.05);
+}
+
+/* Chat window */
+.chatbot-box {
+  width: 370px;
+  height: 540px;
+  max-height: calc(100dvh - 110px);
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+/* Header */
+.chatbot-header {
+  min-height: 68px;
+  padding: 14px 16px;
+  background: #00a86b;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.chatbot-header h5 {
+  margin: 0 0 5px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.chatbot-header span {
+  font-size: 12px;
+  color: #eafff5;
+}
+
+.chatbot-close {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #ffffff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.chatbot-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Messages area */
+.chatbot-messages {
+  flex: 1;
+  min-height: 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #f7f9f8;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+/* Individual messages */
+.chat-message {
+  width: fit-content;
+  max-width: 88%;
+  padding: 10px 13px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.chat-message.bot {
+  align-self: flex-start;
+  background: #ffffff;
+  color: #222222;
+  border: 1px solid #e5e7eb;
+  border-bottom-left-radius: 4px;
+}
+
+.chat-message.user {
+  align-self: flex-end;
+  background: #d9f8e9;
+  color: #173b2b;
+  border-bottom-right-radius: 4px;
+}
+
+/* Product list */
+.chat-products {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  margin-top: 12px;
+}
+
+/* Product card */
+.chat-product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.chat-product img {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  object-fit: contain;
+  border-radius: 7px;
+  background: #ffffff;
+}
+
+.chat-product > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.chat-product p {
+  margin: 0 0 6px;
+  font-size: 13px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.chat-product strong {
+  color: #008f5b;
+  font-size: 14px;
+}
+
+/* Input area */
+.chatbot-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.chatbot-input input {
+  flex: 1;
+  min-width: 0;
+  height: 42px;
+  padding: 0 13px;
+  border: 1px solid #d1d5db;
+  border-radius: 22px;
+  outline: none;
+  font-size: 14px;
+  background: #ffffff;
+  color: #222222;
+}
+
+.chatbot-input input:focus {
+  border-color: #00a86b;
+  box-shadow: 0 0 0 2px rgba(0, 168, 107, 0.12);
+}
+
+.chatbot-input button {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background: #00a86b;
+  color: #ffffff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.chatbot-input button:hover {
+  background: #008f5b;
+}
+
+/* Tablet: 768px to 1024px */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .chatbot-container {
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .chatbot-box {
+    width: 350px;
+    height: 520px;
+    max-height: calc(100dvh - 90px);
+  }
+
+  .chatbot-messages {
+    padding: 14px;
+  }
+
+  .chat-product img {
+    width: 58px;
+    height: 58px;
+  }
+}
+
+/* Mobile: 600px and below */
+@media (max-width: 600px) {
+  .chatbot-container {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .chatbot-toggle {
+    width: 54px;
+    height: 54px;
+    font-size: 27px;
+  }
+
+  .chatbot-box {
+    width: min( calc(100vw - 24px), 400px);
+    height: min(650px, calc(100dvh - 80px));
+    max-height: calc(100dvh - 80px);
+    border-radius: 14px;
+  }
+
+  .chatbot-header {
+    min-height: 60px;
+    padding: 12px;
+  }
+
+  .chatbot-header h5 {
+    font-size: 16px;
+  }
+
+  .chatbot-messages {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .chat-message {
+    max-width: 94%;
+    padding: 9px 11px;
+    font-size: 13px;
+  }
+
+  .chat-product {
+    gap: 9px;
+    padding: 8px;
+  }
+
+  .chat-product img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .chat-product p {
+    font-size: 12px;
+  }
+
+  .chat-product strong {
+    font-size: 13px;
+  }
+
+  .chatbot-input {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .chatbot-input input {
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .chatbot-input button {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 360px) {
+  .chatbot-container {
+    right: 8px;
+    bottom: 8px;
+  }
+
+  .chatbot-box {
+    width: calc(100vw - 16px);
+    height: calc(100dvh - 60px);
+    max-height: calc(100dvh - 60px);
+  }
+
+  .chatbot-messages {
+    padding: 9px;
+  }
+
+  .chatbot-header {
+    padding: 10px;
+  }
+
+  .chat-product img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .chatbot-input {
+    padding: 8px;
+  }
+}
+
+
+
+
+.no-products-message {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: #fff8e6;
+  color: #805b00;
+  border: 1px solid #f3dfaa;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .no-products-message {
+    font-size: 12px;
+    padding: 9px 10px;
+  }
+}
