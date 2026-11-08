@@ -14,7 +14,7 @@ import "../styles/Navbar.css";
 const Navbar = () => {
 
 // Access the authentication modal context
-   const { openAuthModal,user } = useAuthModal();
+   const { openAuthModal,user,logout,name,address } = useAuthModal();
 
 
   const { itemsTotal, numberOfItems } = useCart();
@@ -30,6 +30,7 @@ const Navbar = () => {
   const cartItemCount = 5;
   const cartTotal = 105;
 
+  console.log("Navbar rendered. User:", user, "Name:", name);
   return (
     <BootstrapNavbar className="blinkit-navbar">
       <div className="blinkit-navbar-container">
@@ -92,7 +93,7 @@ const Navbar = () => {
         <div className="blinkit-actions-section">
          
 
-      {user ?   <AccountSection /> : (
+      {user ?   <AccountSection name={user.name} onLogout={logout}  /> : (
             <button
               type="button"
               className="btn btn-outline-primary"

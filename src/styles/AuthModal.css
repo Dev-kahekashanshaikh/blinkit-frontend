@@ -440,4 +440,52 @@
 }
 
 
+/* ===== Email and Password Form ===== */
+
+.auth-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.auth-input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  background: #fff;
+  color: #222;
+}
+
+.auth-content form .auth-submit {
+  margin-top: 4px;
+}
+
+/* ===== Login / Signup Switch ===== */
+
+.auth-resend {
+  display: block;
+  width: 100%;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* ===== Small Mobile Screens ===== */
+
+@media (max-width: 480px) {
+  .auth-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .auth-content form {
+    gap: 10px;
+  }
+
+  .auth-input {
+    height: 46px;
+    font-size: 14px;
+  }
+}
+
 

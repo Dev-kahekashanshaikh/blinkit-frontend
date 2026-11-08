@@ -7,6 +7,7 @@ import React, {
 import { useParams } from "react-router-dom";
 
 import { useCategory } from "../context/CategoryContext";
+import { useCart } from "../context/CartContext";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -32,6 +33,12 @@ const SelectedCategoryProduct = () => {
     } = useCategory();
 
 
+    const {
+        cartItems,
+        addToCart,
+        increaseQuantity,
+        decreaseQuantity,
+    } = useCart();
     useEffect(() => {
 
         console.log("URL category:", categoryName);
@@ -51,101 +58,101 @@ const SelectedCategoryProduct = () => {
     // FILTER + SORT PRODUCTS
     // =========================
 
-   const filteredProducts = useMemo(() => {
+    const filteredProducts = useMemo(() => {
 
-    let result = [...categoryProducts];
-
-
-    // PRICE
-
-    if (priceFilter === "under-50") {
-
-        result = result.filter(
-            product => product.price < 50
-        );
-
-    }
+        let result = [...categoryProducts];
 
 
-    if (priceFilter === "50-100") {
+        // PRICE
 
-        result = result.filter(
-            product =>
-                product.price >= 50 &&
-                product.price <= 100
-        );
+        if (priceFilter === "under-50") {
 
-    }
+            result = result.filter(
+                product => product.price < 50
+            );
 
-
-    if (priceFilter === "above-100") {
-
-        result = result.filter(
-            product => product.price > 100
-        );
-
-    }
+        }
 
 
-    // RATING
+        if (priceFilter === "50-100") {
 
-    if (ratingFilter === "4") {
+            result = result.filter(
+                product =>
+                    product.price >= 50 &&
+                    product.price <= 100
+            );
 
-        result = result.filter(
-            product => product.rating?.rate >= 4
-        );
-
-    }
-
-
-    if (ratingFilter === "3") {
-
-        result = result.filter(
-            product => product.rating?.rate >= 3
-        );
-
-    }
+        }
 
 
-    // SORT
+        if (priceFilter === "above-100") {
 
-    if (sortBy === "price-low") {
+            result = result.filter(
+                product => product.price > 100
+            );
 
-        result.sort(
-            (a, b) => a.price - b.price
-        );
-
-    }
+        }
 
 
-    if (sortBy === "price-high") {
+        // RATING
 
-        result.sort(
-            (a, b) => b.price - a.price
-        );
+        if (ratingFilter === "4") {
 
-    }
+            result = result.filter(
+                product => product.rating?.rate >= 4
+            );
 
-
-    if (sortBy === "rating") {
-
-        result.sort(
-            (a, b) =>
-                (b.rating?.rate || 0) -
-                (a.rating?.rate || 0)
-        );
-
-    }
+        }
 
 
-    return result;
+        if (ratingFilter === "3") {
 
-}, [
-    categoryProducts,
-    priceFilter,
-    ratingFilter,
-    sortBy
-]);
+            result = result.filter(
+                product => product.rating?.rate >= 3
+            );
+
+        }
+
+
+        // SORT
+
+        if (sortBy === "price-low") {
+
+            result.sort(
+                (a, b) => a.price - b.price
+            );
+
+        }
+
+
+        if (sortBy === "price-high") {
+
+            result.sort(
+                (a, b) => b.price - a.price
+            );
+
+        }
+
+
+        if (sortBy === "rating") {
+
+            result.sort(
+                (a, b) =>
+                    (b.rating?.rate || 0) -
+                    (a.rating?.rate || 0)
+            );
+
+        }
+
+
+        return result;
+
+    }, [
+        categoryProducts,
+        priceFilter,
+        ratingFilter,
+        sortBy
+    ]);
 
     // =========================
     // CLEAR FILTERS
@@ -459,32 +466,37 @@ const SelectedCategoryProduct = () => {
                                 // Use filteredProducts here
                                 // NOT categoryProducts
 
-                                filteredProducts.map(product => (
 
-                                    <Link
-                                        to={`/product/${product._id}`}
-                                        className="product-link"
-                                        key={product.id}
-                                    >
+                                filteredProducts.map((product) => {
 
-                                        <Card className="product-card">
+                                    // Check whether product is already in cart
+                                    const cartItem = cartItems.find(
+                                        (item) => item.id === product.id
+                                    );
 
-                                            <div className="product-image-container">
+                                    return (
+                                        <Card className="product-card" key={product.id}>
 
-                                                <Card.Img
-                                                    variant="top"
-                                                    src={product.image}
-                                                    className="product-image"
-                                                    alt={product.title}
-                                                />
+                                            {/* PRODUCT IMAGE - CLICK TO OPEN DETAILS */}
+                                            <Link
+                                                to={`/product/${product._id}`}
+                                                className="product-link"
+                                            >
+                                                <div className="product-image-container">
 
-                                            </div>
+                                                    <Card.Img
+                                                        variant="top"
+                                                        src={product.image}
+                                                        className="product-image"
+                                                        alt={product.title}
+                                                    />
 
+                                                </div>
+                                            </Link>
 
                                             <Card.Body>
 
                                                 {/* RATING */}
-
                                                 <div className="product-rating">
 
                                                     <span className="rating-star">
@@ -500,57 +512,75 @@ const SelectedCategoryProduct = () => {
                                                 </div>
 
 
-                                                {/* TITLE */}
+                                                {/* TITLE - CLICK TO OPEN DETAILS */}
+                                                <Link
+                                                    to={`/product/${product._id}`}
+                                                    className="product-link"
+                                                >
+                                                    <Card.Title className="product-title">
 
-                                                <Card.Title className="product-title">
+                                                    </Card.Title>
 
-                                                    {product.title}
-
-                                                </Card.Title>
-
-
-                                                {/* DESCRIPTION */}
-
-                                                <Card.Text className="product-description">
-
-                                                    {product.description}
-
-                                                </Card.Text>
+                                                    {/* DESCRIPTION */}
+                                                    <Card.Text className="product-description">
+                                                        {product.description}
+                                                    </Card.Text>
+                                                </Link>
 
 
-                                                {/* PRICE */}
+                                                {/* PRICE AND ADD BUTTON */}
+                                               <div className="price-add-button-container">
 
-                                                <div className="price-add-button-container">
+  <span className="product-price">
+    ₹{product.price}
+  </span>
 
-                                                    <span className="product-price">
+  <div className="cart-action-container">
 
-                                                        ₹{product.price}
+    {!cartItem ? (
+      <Button
+        variant="success"
+        className="add-button"
+        onClick={() => addToCart(product)}
+      >
+        ADD
+      </Button>
+    ) : (
+      <div className="quantity-control">
 
-                                                    </span>
+        <button
+          type="button"
+          onClick={() => decreaseQuantity(product.id)}
+        >
+          −
+        </button>
 
+        <span>{cartItem.quantity}</span>
 
-                                                    {/* ADD BUTTON */}
+        <button
+          type="button"
+          onClick={() => increaseQuantity(product.id)}
+        >
+          +
+        </button>
 
-                                                    <Button
-                                                        variant="outline-success"
-                                                        size="sm"
-                                                        as="input"
-                                                        type="button"
-                                                        value="ADD"
-                                                        className="add-button"
-                                                    />
+      </div>
+    )}
 
-                                                </div>
+  </div>
+
+</div>
 
                                             </Card.Body>
 
                                         </Card>
+                                    );
+                                })
 
-                                    </Link>
 
-                                ))
+                            )
 
-                            )}
+                            }
 
                         </div>
 

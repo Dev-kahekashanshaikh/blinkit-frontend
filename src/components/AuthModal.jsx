@@ -7,35 +7,38 @@ export default function AuthModal() {
     isAuthModalOpen,
     closeAuthModal,
     screen,
-    mobile,
+    name,
+    email,
+    password,
     otp,
     loading,
     error,
     message,
-    handleMobileChange,
+    handleNameChange,
+    handleEmailChange,
+    handlePasswordChange,
     handleOtpChange,
-    requestOtp,
-    verifyOtp,
-    resendOtp,
-    goBackToMobile,
+    signup,
+    login,
+    verifyEmail,
+    forgotPassword,
+    resetPassword,
+    switchScreen,
   } = useAuthModal();
 
   if (!isAuthModalOpen) return null;
 
   const handleBackdropClick = (event) => {
-    if (
-      event.target === event.currentTarget &&
-      !loading
-    ) {
+    if (event.target === event.currentTarget && !loading) {
       closeAuthModal();
     }
   };
 
+  const isOtpScreen = screen === "otp";
+  const isSignupScreen = screen === "signup";
+
   return (
-    <div
-      className="auth-overlay"
-      onMouseDown={handleBackdropClick}
-    >
+    <div className="auth-overlay" onMouseDown={handleBackdropClick}>
       <section
         className="auth-modal"
         role="dialog"
@@ -45,8 +48,12 @@ export default function AuthModal() {
         <button
           type="button"
           className="auth-back"
-          aria-label={screen === "otp" ? "Go back" : "Close"}
-          onClick={screen === "otp" ? goBackToMobile : closeAuthModal}
+          aria-label="Go back"
+          onClick={() =>
+            switchScreen(
+              screen === "otp" ? "signup" : "login"
+            )
+          }
           disabled={loading}
         >
           ←
@@ -71,102 +78,226 @@ export default function AuthModal() {
             India's last minute app
           </h2>
 
-          {screen === "form" ? (
+          {/* EMAIL VERIFICATION */}
+          {isOtpScreen && (
             <>
               <p className="auth-subtitle">
-                Log in or Sign up
-              </p>
-
-              <form onSubmit={requestOtp}>
-                <div className="auth-phone">
-                  <span>+91</span>
-
-                  <input
-                    type="tel"
-                    inputMode="numeric"
-                    autoComplete="tel-national"
-                    placeholder="Enter mobile number"
-                    aria-label="Mobile number"
-                    value={mobile}
-                    onChange={(event) =>
-                      handleMobileChange(event.target.value)
-                    }
-                    maxLength={10}
-                    required
-                    disabled={loading}
-                  />
-                </div>
-
-                {error && (
-                  <p className="auth-error" role="alert">
-                    {error}
-                  </p>
-                )}
-
-                <button
-                  className="auth-submit"
-                  type="submit"
-                  disabled={loading || mobile.length !== 10}
-                >
-                  {loading ? "Please wait..." : "Continue"}
-                </button>
-              </form>
-            </>
-          ) : (
-            <>
-              <p className="auth-subtitle">
-                Verify your mobile number
+                Verify your email address
               </p>
 
               <p className="auth-description">
-                Enter the 6-digit OTP sent to +91 {mobile}.
+                Enter the OTP sent to {email}.
               </p>
 
-              <form onSubmit={verifyOtp}>
+              <form onSubmit={verifyEmail}>
                 <input
                   className="auth-input auth-otp"
                   type="text"
                   inputMode="numeric"
-                  autoComplete="one-time-code"
-                  placeholder="Enter 6-digit OTP"
-                  aria-label="One-time password"
+                  placeholder="Enter OTP"
                   value={otp}
-                  onChange={(event) =>
-                    handleOtpChange(event.target.value)
+                  onChange={(e) =>
+                    handleOtpChange(e.target.value)
                   }
-                  maxLength={6}
-                  required
                   disabled={loading}
                 />
 
                 {error && (
-                  <p className="auth-error" role="alert">
-                    {error}
-                  </p>
+                  <p className="auth-error">{error}</p>
                 )}
 
                 {message && (
-                  <p className="auth-success" role="status">
-                    {message}
-                  </p>
+                  <p className="auth-success">{message}</p>
                 )}
 
                 <button
                   className="auth-submit"
                   type="submit"
-                  disabled={loading || otp.length !== 6}
+                  disabled={loading}
                 >
-                  {loading ? "Verifying..." : "Verify & Continue"}
+                  {loading ? "Verifying..." : "Verify Email"}
+                </button>
+              </form>
+            </>
+          )}
+
+          {/* FORGOT PASSWORD */}
+          {screen === "forgot" && (
+            <>
+              <p className="auth-subtitle">
+                Forgot Password?
+              </p>
+
+              <p className="auth-description">
+                Enter your email to receive a reset link.
+              </p>
+
+              <form onSubmit={forgotPassword}>
+                <input
+                  className="auth-input"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) =>
+                    handleEmailChange(e.target.value)
+                  }
+                  disabled={loading}
+                />
+
+                {error && (
+                  <p className="auth-error">{error}</p>
+                )}
+
+                {message && (
+                  <p className="auth-success">{message}</p>
+                )}
+
+                <button
+                  className="auth-submit"
+                  type="submit"
+                  disabled={loading}
+                >
+                  {loading ? "Please wait..." : "Send Reset Link"}
                 </button>
               </form>
 
               <button
                 className="auth-resend"
                 type="button"
-                onClick={resendOtp}
+                onClick={() => switchScreen("login")}
+              >
+                Back to Login
+              </button>
+            </>
+          )}
+
+          {/* RESET PASSWORD */}
+          {screen === "reset" && (
+            <>
+              <p className="auth-subtitle">
+                Reset Password
+              </p>
+
+              <form onSubmit={resetPassword}>
+                <input
+                  className="auth-input"
+                  type="password"
+                  placeholder="Enter your new password"
+                  value={password}
+                  onChange={(e) =>
+                    handlePasswordChange(e.target.value)
+                  }
+                  disabled={loading}
+                />
+
+                {error && (
+                  <p className="auth-error">{error}</p>
+                )}
+
+                {message && (
+                  <p className="auth-success">{message}</p>
+                )}
+
+                <button
+                  className="auth-submit"
+                  type="submit"
+                  disabled={loading}
+                >
+                  {loading ? "Please wait..." : "Update Password"}
+                </button>
+              </form>
+            </>
+          )}
+
+          {/* LOGIN AND SIGNUP */}
+          {(screen === "login" || isSignupScreen) && (
+            <>
+              <p className="auth-subtitle">
+                {isSignupScreen
+                  ? "Create your account"
+                  : "Log in to your account"}
+              </p>
+
+              <form onSubmit={isSignupScreen ? signup : login}>
+                {isSignupScreen && (
+                  <input
+                    className="auth-input"
+                    type="text"
+                    placeholder="Enter your full name"
+                    value={name}
+                    onChange={(e) =>
+                      handleNameChange(e.target.value)
+                    }
+                    disabled={loading}
+                  />
+                )}
+
+                <input
+                  className="auth-input"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) =>
+                    handleEmailChange(e.target.value)
+                  }
+                  disabled={loading}
+                />
+
+                <input
+                  className="auth-input"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) =>
+                    handlePasswordChange(e.target.value)
+                  }
+                  disabled={loading}
+                />
+
+                {error && (
+                  <p className="auth-error">{error}</p>
+                )}
+
+                {message && (
+                  <p className="auth-success">{message}</p>
+                )}
+
+                <button
+                  className="auth-submit"
+                  type="submit"
+                  disabled={loading}
+                >
+                  {loading
+                    ? "Please wait..."
+                    : isSignupScreen
+                      ? "Create Account"
+                      : "Login"}
+                </button>
+              </form>
+
+              {!isSignupScreen && (
+                <button
+                  className="auth-resend"
+                  type="button"
+                  onClick={() => switchScreen("forgot")}
+                >
+                  Forgot Password?
+                </button>
+              )}
+
+              <button
+                className="auth-resend"
+                type="button"
+                onClick={() =>
+                  switchScreen(
+                    isSignupScreen ? "login" : "signup"
+                  )
+                }
                 disabled={loading}
               >
-                Resend OTP
+                {isSignupScreen
+                  ? "Already have an account? Login"
+                  : "Don't have an account? Sign up"}
               </button>
             </>
           )}

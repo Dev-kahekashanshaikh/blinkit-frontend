@@ -11,7 +11,6 @@ const ProductsGrid = ({
   onAdd,
   loading = false,
 }) => {
-  // Call the hook once, outside the map
   const {
     cartItems,
     addToCart,
@@ -49,16 +48,16 @@ const ProductsGrid = ({
               xl={2}
               className="product-column"
             >
-              <Link
-                to={`/product/${product._id}`}
-                className="product-link"
-              >
-                <Card className="product-card">
+              <Card className="product-card">
+
+                {/* CLICKABLE PRODUCT DETAILS */}
+                <Link
+                  to={`/product/${product._id}`}
+                  className="product-link"
+                >
                   <div className="product-image-wrapper">
-                  
                     <img
                       src={product.image}
-
                       alt={product.title}
                       className="product-image"
                     />
@@ -73,7 +72,6 @@ const ProductsGrid = ({
 
                     <Card.Title className="product-title">
                       {product.title}
-                      
                     </Card.Title>
 
                     {product.category && (
@@ -81,61 +79,62 @@ const ProductsGrid = ({
                         {product.category}
                       </div>
                     )}
-
-                    <div className="product-bottom">
-                      <strong className="product-price">
-                        ₹{Number(product.price).toFixed(2)}
-                      </strong>
-
-                      {!cartItem ? (
-                        <Button
-                          variant="outline-success"
-                          className="add-button"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            onAdd?.(product);
-                            addToCart(product);
-                          }}
-                        >
-                          ADD
-                        </Button>
-                      ) : (
-                        <div
-                          className="quantity-control"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <button
-                            type="button"
-                            className="quantity-btn"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              decreaseQuantity(product.id);
-                            }}
-                          >
-                            −
-                          </button>
-
-                          <span className="quantity-value">
-                            {cartItem.quantity}
-                          </span>
-
-                          <button
-                            type="button"
-                            className="quantity-btn"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              increaseQuantity(product.id);
-                            }}
-                          >
-                            +
-                          </button>
-                        </div>
-                      )}
-                    </div>
                   </Card.Body>
-                </Card>
-              </Link>
+                </Link>
+
+                {/* PRICE AND CART CONTROLS OUTSIDE LINK */}
+                <div className="product-bottom">
+
+                  <strong className="product-price">
+                    ₹{Number(product.price).toFixed(0)}
+                  </strong>
+
+                  <div className="cart-action-container">
+                    {!cartItem ? (
+                      <Button
+                        variant="outline-success"
+                        className="add-button"
+                        onClick={() => {
+                          onAdd?.(product);
+                          addToCart(product);
+                        }}
+                      >
+                        ADD
+                      </Button>
+                    ) : (
+                      <div className="quantity-control">
+
+                        <button
+                          type="button"
+                          className="quantity-btn"
+                          onClick={() =>
+                            decreaseQuantity(product.id)
+                          }
+                        >
+                          −
+                        </button>
+
+                        <span className="quantity-value">
+                          {cartItem.quantity}
+                        </span>
+
+                        <button
+                          type="button"
+                          className="quantity-btn"
+                          onClick={() =>
+                            increaseQuantity(product.id)
+                          }
+                        >
+                          +
+                        </button>
+
+                      </div>
+                    )}
+                  </div>
+
+                </div>
+
+              </Card>
             </Col>
           );
         })}

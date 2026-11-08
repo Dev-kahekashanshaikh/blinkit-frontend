@@ -1,6 +1,48 @@
 
 /* ---------- Products section ---------- */
 
+.product-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+  margin-top: auto;
+  box-sizing: border-box;
+  padding: 0 12px 12px;
+}
+
+.product-price {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Fixed width for both ADD and quantity controls */
+.cart-action-container {
+  width: 76px;
+  min-width: 76px;
+  max-width: 76px;
+  height: 32px;
+  flex: 0 0 76px;
+  box-sizing: border-box;
+}
+
+.add-button {
+  width: 100%;
+  height: 32px;
+  padding: 0;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
 .products-section {
   width: 100%;
   max-width: 1400px;
@@ -152,37 +194,31 @@
   overflow-wrap: anywhere;
 }
 
-.add-button {
-  flex: 0 0 auto;
-  padding: 5px 10px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  white-space: nowrap;
-}
+
 
 /* ---------- Quantity controls ---------- */
 
 .quantity-control {
-  display: inline-flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  width: 100%;
+  min-width: 0;
   max-width: 100%;
   height: 32px;
+  flex: 0 0 100%;
+  align-items: center;
+  justify-content: space-between;
   overflow: hidden;
   border-radius: 6px;
   background: #198754;
   box-sizing: border-box;
-  white-space: nowrap;
 }
 
 .quantity-btn {
   display: flex;
-  flex: 0 0 26px;
+  flex: 0 0 24px;
   align-items: center;
   justify-content: center;
-  width: 26px;
+  width: 24px;
   height: 32px;
   padding: 0;
   border: 0;
@@ -194,17 +230,40 @@
 }
 
 .quantity-value {
-  flex: 0 1 auto;
-  min-width: 18px;
-  padding: 0 2px;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0;
   color: #fff;
   font-size: 13px;
   text-align: center;
 }
 
+
+
 /* ---------- Small mobile: up to 400px ---------- */
 
 @media (max-width: 400px) {
+  .cart-action-container {
+  width: 66px;
+  min-width: 66px;
+  max-width: 66px;
+  flex-basis: 66px;
+  height: 30px;
+}
+
+.add-button {
+  height: 30px;
+}
+
+.quantity-control {
+  height: 30px;
+}
+
+.quantity-btn {
+  flex-basis: 21px;
+  width: 21px;
+  height: 30px;
+}
   .products-section {
     padding: 16px 8px;
   }
@@ -240,15 +299,7 @@
     font-size: 11px;
   }
 
-  .add-button {
-    padding: 4px 6px;
-    font-size: 11px;
-  }
 
-  .quantity-btn {
-    flex-basis: 21px;
-    width: 21px;
-  }
 
   .quantity-value {
     min-width: 16px;

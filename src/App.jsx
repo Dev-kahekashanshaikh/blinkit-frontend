@@ -1,6 +1,8 @@
 import React from "react";
 import AppRoutes from './routes/AppRoutes';
 import AuthModal from "./components/AuthModal";
+import LoginSuccessPopup from "./components/LoginSuccessPopup";
+
 
 function App() {
 
@@ -8,7 +10,7 @@ function App() {
    <>
    <AppRoutes />
    <AuthModal />
-
+    <LoginSuccessPopup />
    </>
   );
 }

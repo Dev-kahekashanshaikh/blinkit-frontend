@@ -1,114 +1,147 @@
-/* ==================================================
-   ACCOUNT SECTION DROPDOWN
-   Compact sizing: smaller fonts, tighter spacing
-================================================== */
 
+/* Main dropdown wrapper */
+.account-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Account button */
 .account-toggle {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  gap: 8px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
   color: #212529;
-  white-space: nowrap;
+  font-size: 17px;
+  font-weight: 600;
   cursor: pointer;
 }
 
+/* Arrow */
+.account-arrow {
+  font-size: 10px;
+  transition: transform 0.2s ease;
+}
+
+.account-arrow.open {
+  transform: rotate(180deg);
+}
+
+/* Dropdown menu */
 .account-menu {
-  width: 260px; /* was ~340px */
-  padding: 14px;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 250px;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  z-index: 9999;
+  animation: accountDropdownShow 0.18s ease;
+  
 }
 
+/* Header */
 
-/* ==================================================
-   HEADER
-================================================== */
-
-.account-header {
-  margin-bottom: 6px;
-}
-
-.account-header-title {
-  font-size: 1rem;
+.account-header h3 {
+  margin: 0 0 6px;
+  color: #212529;
+  font-size: 20px;
   font-weight: 700;
 }
 
-.account-header-phone {
-  font-size: 0.75rem;
-  color: #777;
+.account-header p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
 }
 
+/* Divider */
 .account-divider {
-  margin: 8px 0;
+  height: 1px;
+  margin:6px 0;
+  background: #eeeeee;
 }
 
-
-/* ==================================================
-   MENU LINKS
-================================================== */
+/* Menu links */
+.account-links {
+  display: flex;
+  flex-direction: column;
+}
 
 .account-menu-item {
-  padding: 6px 0 !important;
-  font-size: 0.8rem;
+  width: 100%;
+  padding: 9px 0;
+  border: none;
+  background: transparent;
+  color: #343a40;
+  text-align: left;
+  font-size: 13px;
   font-weight: 600;
-  color: #212529 !important;
+  cursor: pointer;
+  transition: color 0.2s ease, padding-left 0.2s ease;
 }
 
+.account-menu-item:hover {
+  color: #0c831f;
+  padding-left: 6px;
+}
 
-/* ==================================================
-   QR FOOTER
-================================================== */
+.logout-item {
+  color: #dc3545;
+}
 
-.account-qr-row {
+.logout-item:hover {
+  color: #b02a37;
+}
+
+/* QR footer */
+.account-footer {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
 }
 
-.account-qr-img {
-  width: 60px;
-  height: 60px;
-  flex-shrink: 0;
+.account-qr {
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
 }
 
-.account-qr-info {
-  min-width: 0;
+.account-footer strong {
+  display: block;
+  color: #212529;
+  font-size: 14px;
 }
 
-.account-qr-title {
-  font-size: 0.72rem;
-  font-weight: 700;
-  line-height: 1.2;
+.account-footer p {
+  margin: 5px 0 0;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.4;
 }
 
-.account-qr-highlight {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #2563eb;
-  line-height: 1.2;
-}
-
-.account-qr-subtext {
-  font-size: 0.62rem;
-  color: #888;
-  line-height: 1.2;
-}
-
-
-/* ==================================================
-   MOBILE
-================================================== */
-
-@media (max-width: 576px) {
-  .account-menu {
-    width: 88vw;
-    padding: 12px;
+/* Animation */
+@keyframes accountDropdownShow {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
   }
 
-  .account-qr-img {
-    width: 52px;
-    height: 52px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .account-menu {
+    width: 260px;
+    right: -10px;
   }
 }

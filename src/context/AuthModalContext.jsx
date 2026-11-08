@@ -8,49 +8,97 @@ import {
 
 const AuthModalContext = createContext(null);
 
-const API_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const API_URL = "http://localhost:4000/api/auth";
+
+// All requests use cookies automatically through credentials: include.
+const apiRequest = async (endpoint, options = {}) => {
+  const response = await fetch(`${API_URL}${endpoint}`, {
+    ...options,
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(
+      data.message || "Something went wrong. Please try again."
+    );
+  }
+
+  return data;
+};
 
 export const AuthModalProvider = ({ children }) => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [screen, setScreen] = useState("login");
 
-  // form | otp
-  const [screen, setScreen] = useState("form");
-
-  const [mobile, setMobile] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [otp, setOtp] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  // Authenticated user and their associated data
   const [user, setUser] = useState(null);
+
 
   const isAuthenticated = Boolean(user);
 
+  const [successType, setSuccessType] = useState("");
+const [loginSuccess, setLoginSuccess] = useState(false);
+
+
+  // Open authentication modal
   const openAuthModal = () => {
-    setScreen("form");
-    setMobile("");
+    setScreen("login");
+    setName("");
+    setEmail("");
+    setPassword("");
     setOtp("");
     setError("");
     setMessage("");
     setIsAuthModalOpen(true);
   };
 
+  // Close modal
   const closeAuthModal = () => {
     if (loading) return;
 
     setIsAuthModalOpen(false);
-    setScreen("form");
-    setMobile("");
+    setError("");
+    setMessage("");
+  };
+
+  // Switch between login and signup
+  const switchScreen = (nextScreen) => {
+    if (loading) return;
+
+    setScreen(nextScreen);
+    setPassword("");
     setOtp("");
     setError("");
     setMessage("");
   };
 
-  const handleMobileChange = (value) => {
-    setMobile(value.replace(/\D/g, "").slice(0, 10));
+  // Input handlers
+  const handleNameChange = (value) => {
+    setName(value);
+    setError("");
+  };
+
+  const handleEmailChange = (value) => {
+    setEmail(value);
+    setError("");
+  };
+
+  const handlePasswordChange = (value) => {
+    setPassword(value);
     setError("");
   };
 
@@ -59,136 +107,257 @@ export const AuthModalProvider = ({ children }) => {
     setError("");
   };
 
-  // Request OTP for either a returning or a new user.
-  // The backend decides which account flow applies.
-  const requestOtp = async (event) => {
+  // SIGNUP
+  const signup = async (event) => {
     event.preventDefault();
+
     setError("");
     setMessage("");
-
-    if (!/^[6-9]\d{9}$/.test(mobile)) {
-      setError("Please enter a valid 10-digit mobile number.");
-      return;
-    }
-
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/auth/send-otp`, {
+      const data = await apiRequest("/signup", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ mobile }),
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
       });
-
-      const data = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        throw new Error(data.message || "Unable to send OTP.");
-      }
 
       setScreen("otp");
+      setOtp("");
       setMessage(
-        data.message || "OTP sent. Please check your mobile."
+        data.message || "OTP sent to your email address."
       );
     } catch (err) {
-      setError(err.message || "Something went wrong. Try again.");
+      setError(err.message);
     } finally {
       setLoading(false);
     }
   };
 
-  // Verify OTP and retrieve the authenticated user's data.
-  const verifyOtp = async (event) => {
-    event.preventDefault();
-    setError("");
-    setMessage("");
 
-    if (!/^\d{6}$/.test(otp)) {
-      setError("Please enter the 6-digit OTP.");
-      return;
+//=====================================================
+//   const signup = async (event) => {
+//   event.preventDefault();
+
+//   setError("");
+//   setMessage("");
+//   setLoading(true);
+
+//   try {
+//     const data = await apiRequest("/signup", {
+//       method: "POST",
+//       body: JSON.stringify({
+//         name,
+//         email,
+//         password,
+//       }),
+//     });
+
+//     if (!data.user) {
+//       throw new Error("User details were not returned by server.");
+//     }
+
+//     // Automatically log in after successful signup.
+//     setUser(data.user);
+//     setName(data.user.name || "");
+//     setEmail(data.user.email || "");
+//     setPassword("");
+//     setOtp("");
+
+//     setIsAuthModalOpen(false);
+//     setScreen("login");
+
+//     // Show signup success popup.
+//     setLoginSuccess(true);
+//     setSuccessType("signup");
+
+//   } catch (err) {
+//     setError(err.message);
+//   } finally {
+//     setLoading(false);
+//   }
+// };
+
+
+
+
+
+
+
+
+
+
+
+  // VERIFY EMAIL OTP
+  // const verifyEmail = async (event) => {
+  //   event.preventDefault();
+
+  //   setError("");
+  //   setMessage("");
+  //   setLoading(true);
+
+  //   try {
+  //     const data = await apiRequest("/verify-email", {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         email,
+  //         otp,
+  //       }),
+  //     });
+
+  //     setScreen("login");
+  //     setPassword("");
+  //     setOtp("");
+
+  //     setMessage(
+  //       data.message ||
+  //       "Email verified successfully. Please log in."
+  //     );
+      
+  //   } catch (err) {
+  //     setError(err.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+// VERIFY EMAIL OTP AND AUTO LOGIN
+const verifyEmail = async (event) => {
+  event.preventDefault();
+
+  setError("");
+  setMessage("");
+  setLoading(true);
+
+  try {
+    const data = await apiRequest("/verify-email", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        otp,
+      }),
+    });
+
+    if (!data.user) {
+      throw new Error(
+        "Email verified, but automatic login failed."
+      );
     }
 
+    // Save authenticated user
+    setUser(data.user);
+
+    setName(data.user.name || "");
+    setEmail(data.user.email || "");
+
+    // Clear sensitive fields
+    setPassword("");
+    setOtp("");
+
+    // Show signup success popup
+    setSuccessType("signup");
+    setLoginSuccess(true);
+
+    // Close authentication modal
+    setIsAuthModalOpen(false);
+    setScreen("login");
+
+  } catch (err) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+
+  // LOGIN
+  const login = async (event) => {
+    event.preventDefault();
+
+    setError("");
+    setMessage("");
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/auth/verify-otp`, {
+      const data = await apiRequest("/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ mobile, otp }),
+        body: JSON.stringify({
+          email,
+          password,
+        }),
       });
 
-      const data = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        throw new Error(data.message || "Invalid or expired OTP.");
-      }
-
-      // Expected response:
-      // { user: { _id, name, mobile, likes, cart, orders } }
       if (!data.user) {
-        throw new Error("The server did not return user details.");
+        throw new Error("User details were not returned by server.");
       }
 
+      // JWT is in the HttpOnly cookie.
+      // We only keep safe user details in React state.
       setUser(data.user);
-      setMessage("Successfully logged in!");
 
       setIsAuthModalOpen(false);
-      setScreen("form");
-      setMobile("");
+      setScreen("login");
+      setName(data.user.name);
+      setEmail(data.user.email);
+      setLoginSuccess(true);
+      setSuccessType("login");
+      setPassword("");
+      setOtp("");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // CHECK EXISTING LOGIN SESSION
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const data = await apiRequest("/me", {
+          method: "GET",
+        });
+
+        if (data.user) {
+          setUser(data.user);
+          setName(data.user.name);
+          setEmail(data.user.email);
+          setAddress(data.user.address);
+        }
+      } catch {
+        setUser(null);
+      }
+    };
+
+    checkSession();
+  }, []);
+
+  // LOGOUT
+  const logout = async () => {
+    try {
+      await apiRequest("/logout", {
+        method: "POST",
+      });
+    } catch (err) {
+      console.error("Logout error:", err);
+    } finally {
+      setUser(null);
+      setIsAuthModalOpen(false);
+      setScreen("login");
+      setName("");
+      setEmail("");
+      setPassword("");
       setOtp("");
       setError("");
-    } catch (err) {
-      setError(err.message || "Verification failed. Try again.");
-    } finally {
-      setLoading(false);
+      setMessage("");
     }
   };
 
-  const resendOtp = async () => {
-    setError("");
-    setMessage("");
-
-    if (!/^[6-9]\d{9}$/.test(mobile)) {
-      setError("Please enter a valid mobile number.");
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const response = await fetch(`${API_URL}/auth/resend-otp`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ mobile }),
-      });
-
-      const data = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        throw new Error(data.message || "Unable to resend OTP.");
-      }
-
-      setMessage(data.message || "A new OTP has been requested.");
-    } catch (err) {
-      setError(err.message || "Unable to resend OTP.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const goBackToMobile = () => {
-    if (loading) return;
-
-    setScreen("form");
-    setOtp("");
-    setError("");
-    setMessage("");
-  };
-
-  // Close on Escape and lock background scrolling.
+  // Escape key and background scroll handling
   useEffect(() => {
     if (!isAuthModalOpen) return;
 
@@ -209,43 +378,54 @@ export const AuthModalProvider = ({ children }) => {
     };
   }, [isAuthModalOpen, loading]);
 
-  const logout = async () => {
-    if (loading) return;
 
-    try {
-      await fetch(`${API_URL}/auth/logout`, {
-        method: "POST",
-        credentials: "include",
-      });
-    } finally {
-      setUser(null);
-    }
-  };
+  const forgotPassword = async (email) => {
+  return await apiRequest("/forgot-password", {
+    method: "POST",
+    body: JSON.stringify({ email }),
+  });
+};
 
+const resetPassword = async (token, newPassword) => {
+  return await apiRequest("/reset-password", {
+    method: "POST",
+    body: JSON.stringify({ token, newPassword }),
+  });
+};
   const value = {
     isAuthModalOpen,
-    setIsAuthModalOpen,
     openAuthModal,
     closeAuthModal,
 
     screen,
-    mobile,
+    name,
+    email,
+    password,
     otp,
+
     loading,
     error,
     message,
 
     user,
-    setUser,
     isAuthenticated,
-    logout,
+    loginSuccess,
+setLoginSuccess,
+successType,
+setSuccessType,
 
-    handleMobileChange,
+    handleNameChange,
+    handleEmailChange,
+    handlePasswordChange,
     handleOtpChange,
-    requestOtp,
-    verifyOtp,
-    resendOtp,
-    goBackToMobile,
+
+    signup,
+    login,
+    verifyEmail,
+    switchScreen,
+    logout,
+    forgotPassword,
+    resetPassword,
   };
 
   return (
