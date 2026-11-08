@@ -3,6 +3,8 @@
 
 import SelectedCategoryProduct from '../components/SelectedCategoryProduct';
 
+import AllProducts from './AllProducts';
+
 const SelectedCategoryProducts = () => {
 
 
@@ -13,7 +15,7 @@ const SelectedCategoryProducts = () => {
 
 
         <SelectedCategoryProduct />
-
+        <AllProducts />
 
 
       

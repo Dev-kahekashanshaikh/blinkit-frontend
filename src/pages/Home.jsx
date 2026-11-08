@@ -4,6 +4,8 @@ import HeroSection from '../components/HeroSection';
 import CategoryBanner from '../components/CategoryBanner';
 import CategoryList from '../components/CategoryList';
 import Chatbot from '../components/Chatbot';
+import AllProducts from './AllProducts';
+
 const Home = () => {
   return (
     <div className='home '>
@@ -13,6 +15,7 @@ const Home = () => {
     <CategoryBanner />
     <CategoryList />
     <Chatbot />
+    <AllProducts />
    
 
     </main>
