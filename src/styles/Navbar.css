@@ -11,6 +11,7 @@
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
+
 }
 
 .blinkit-navbar,
@@ -18,6 +19,10 @@
   box-sizing: border-box;
 }
 
+
+.mobile-login-profile{
+  display:none;
+}
 /* ==================================================
    MAIN CONTAINER
 ================================================== */
@@ -337,6 +342,9 @@
 
   .location-content {
     max-width: 145px;
+       display:flex;
+    flex-direction:column;
+    align-items:flex-start;
   }
 
   .location-label {
@@ -387,49 +395,211 @@
 ================================================== */
 
 @media (max-width: 480px) {
+
+  .blinkit-navbar {
+background: linear-gradient(135deg, #F6D365, #FDA085);
+
+  border-bottom: 1px solid #e5e7eb;
+
+ 
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+  .blinkit-navbar-container{
+
+  margin: 0 auto;
+  padding: 0;
+  gap: 5px;
+ 
+
+  }
+.login-profile-btn{
+  display:none;
+}
+
+.mobile-login-profile{
+  display:inline-flex;
+ font-size: 30px;
+  color:#000;
+  position: relative;
+  bottom: 10px;
+  left: 5px;
+
+}
+
+  .blinkit-logo-section{
+    display: none;
+  }
   .blinkit-navbar-container {
     padding: 0 8px;
     gap: 10px;
   }
 
-  .blinkit-logo {
-    font-size: 1.45rem;
-  }
-
+ 
   .blinkit-location-section {
-    gap: 5px;
+    flex: 0 0 80%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  margin-bottom: 0;
+  height:50px;
+  overflow:visible;
+
+  cursor: pointer;
+
   }
 
-  .location-content {
-    max-width: 120px;
+
+   .location-content {
+     max-width: 100%;
+      padding: 0;
+    margin: 0%;
+
   }
+ 
 
   .location-label {
-    font-size: 10px;
+    font-size: 1.2rem;
+    color: #000;
+    font-weight: 700;
+ padding: 0;
+    margin: 0%;
   }
 
   .location-text {
-    max-width: 120px;
-    font-size: 11px;
-  }
+    max-width: 100%;
+    font-size: 1rem;
+   
+  }  
 
-  .blinkit-actions-section {
-    gap: 8px;
-  }
+
+
+.blinkit-actions-section {
+    position: static;
+    height: auto;
+    padding: 0;
+}
+
+.blinkit-search-section{
+    display: flex;
+    justify-content: center;
+}
+
+.blinkit-search-form{
+  width: 95%;
+ }
+.location-icon{
+  display:none;
+}
+
+
+  /* .blinkit-actions-section {
+   
+    position:fixed;
+    top: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 100; 
+    align-items:flex-end;
+    justify-content:space-between;
+    padding: 20px;
+
+  } */
+
+
 
   .blinkit-cart-button {
-    padding: 7px 9px;
-    gap: 7px;
+    position: fixed;
+    bottom: 15px;
+    left: 10px;
+    right: 10px;
+    width: auto;
+    z-index: 1000;
+    height: 50px;
+}
+
+.blinkit-login-button{
+  border:none !important;
+  color:#000 !important;
+}
+
+
+.blinkit-actions-section .btn,
+.blinkit-cart-button,
+.blinkit-login-button {
+    pointer-events: auto;
+}
+
+.blinkit-cart-button {
+    position: fixed;
+    bottom: 10px;
+    left: 12px;
+    right: 12px;
+    width: calc(100% - 24px);
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-radius: 8px;
+}
+.products-section,
+.main-content {
+    padding-bottom: 80px;
+}
+
+
+
+  .blinkit-login-button{
+ position: absolute;
+ top: 25px;
+ right: 10px;
   }
 
+
+ 
+
   .blinkit-cart-button .cart-icon {
-    font-size: 18px;
+    font-size: 23px;
+    position: absolute;
+    left: 35px;
+    background-color: #16a34a;
+    padding: 5px;
+    border-radius: 25%;
+    margin:10px 0 !important;
+   
   }
 
   .blinkit-cart-button .cart-text {
-    font-size: 11px;
+    font-size: 15px;
+    width:20%;
+     position: absolute;
+    left: 75px;
+   /* visibility: hidden; */
+  }
+
+  .cart-text::after{
+    content: "View Cart ▶";
+    font-size: 15px;
+    width:20%;
+     position: absolute;
+    /* left: 80%; */
+    left: 98%;
+    width:200px;
+    font-weight: 600;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:21px;
+    text-align: right;
+    color:#fff;
   }
 }
+
 
 /* ==================================================
    VERY SMALL MOBILE

@@ -8,7 +8,8 @@ function App() {
 
   return (
    <>
-   <AppRoutes />
+  
+   <AppRoutes  />
    <AuthModal />
     <LoginSuccessPopup />
    </>

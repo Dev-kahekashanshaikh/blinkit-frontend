@@ -5,13 +5,15 @@ import LocationSection from "./LocationSection";
 import { useCart } from "../context/CartContext";
 import { Navbar as BootstrapNavbar, Form } from "react-bootstrap";
 import { useAuthModal } from "../context/AuthModalContext";
+import MobileHeroSection from '../components/MobileHeroSection';
 
 
 import { FaMapMarkerAlt, FaShoppingCart, FaSearch } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
 
 import "../styles/Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ showMobileHero = false }) => {
 
 // Access the authentication modal context
    const { openAuthModal,user,logout,name,address } = useAuthModal();
@@ -32,6 +34,8 @@ const Navbar = () => {
 
   console.log("Navbar rendered. User:", user, "Name:", name);
   return (
+
+    <>
     <BootstrapNavbar className="blinkit-navbar">
       <div className="blinkit-navbar-container">
         {/* =========================
@@ -53,8 +57,8 @@ const Navbar = () => {
           <FaMapMarkerAlt className="location-icon" />
 
           <div className="location-content">
-            <span className="location-label">Delivery in 10 minutes</span>
-            <span className="location-text">Select your location</span>
+            <h2 className="location-label">Delivery in 10 minutes</h2>
+            <p className="location-text">Select your location</p>
           </div>
         </div>
 
@@ -96,10 +100,10 @@ const Navbar = () => {
       {user ?   <AccountSection name={user.name} onLogout={logout}  /> : (
             <button
               type="button"
-              className="btn btn-outline-primary"
+              className="btn btn-outline-primary blinkit-login-button"
               onClick={() => openAuthModal("login")}
             >
-              Login
+           <span className="login-profile-btn">    Login </span> <span className="mobile-login-profile"><CgProfile /></span>
             </button>
           )  }
 
@@ -119,7 +123,14 @@ const Navbar = () => {
           <CartSection show={showCart} handleClose={() => setShowCart(false)} />
         </div>
       </div>
+        
+
     </BootstrapNavbar>
+
+       {/* Show festive section only when requested */}
+       {showMobileHero && <MobileHeroSection />}
+
+    </>
   );
 };
 

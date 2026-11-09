@@ -1,43 +1,37 @@
+import { Routes, Route } from "react-router-dom";
 
-import { Routes, Route } from 'react-router-dom';
+import Home from "../pages/Home";
+import SelectedCategoryProducts from "../pages/SelectedCategoryProducts";
+import SelectedProduct from "../pages/SelectedProduct";
 
-import Home from '../pages/Home';
-import SelectedCategoryProducts from '../pages/SelectedCategoryProducts';
-import SelectedProduct from '../pages/SelectedProduct';
-import AppLayout from './AppLayout';
+import ResponsiveLayout from "./ResponsiveLayout";
 
 const AppRoutes = () => {
-  return (
 
-    <>
-    <Routes>
+    return (
+        <Routes>
 
+            <Route element={<ResponsiveLayout />}>
 
+                <Route
+                    path="/"
+                    element={<Home />}
+                />
 
-    <Route path="/" element={<AppLayout />} >
+                <Route
+                    path="/category/:categoryName"
+                    element={<SelectedCategoryProducts />}
+                />
 
-      {/* Home page */}
-      <Route
-      index element={<Home />}
-      />
+                <Route
+                    path="/product/:productId"
+                    element={<SelectedProduct />}
+                />
 
-      {/* Selected category products */}
-      <Route
-        path="/category/:categoryName"
-        element={<SelectedCategoryProducts />}
-      />
+            </Route>
 
-      {/* Selected product */}
-      <Route
-        path="/product/:productId"
-        element={<SelectedProduct />}
-      />
-      </Route>
-
-    </Routes>
-    </>
-  );
+        </Routes>
+    );
 };
 
 export default AppRoutes;
-

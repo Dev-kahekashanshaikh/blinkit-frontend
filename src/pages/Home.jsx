@@ -11,9 +11,12 @@ const Home = () => {
     <div className='home '>
     
     <main className='container home-main'>
+    
     <HeroSection />
+
     <CategoryBanner />
     <CategoryList />
+
     <Chatbot />
     <AllProducts />
    

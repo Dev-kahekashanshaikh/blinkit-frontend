@@ -13,3 +13,12 @@
     margin-left: 15px;
     width: 25%;
 }
+
+
+@media (max-width: 480px) {
+
+.category-banner {
+ display:none ;
+}
+
+}

@@ -1,0 +1,161 @@
+/* ==================================
+   FESTIVAL SECTION
+================================== */
+
+.festival-section {
+    display:none;
+
+    width: 100%;
+  /* margin: 12px; */
+  padding: 26px;
+  /* border-radius: 20px; */
+border-radius: 0 0 40px 40px;
+  background: linear-gradient(
+    180deg,
+    #f6d1c5 0%,
+    #f8d8ca 35%,
+    #f9e0d2 70%,
+    #fde8da 100%
+  );
+box-sizing: border-box;
+  overflow: hidden;
+
+}
+
+/* ==================================
+   HEADER
+================================== */
+
+.festival-header {
+  margin-bottom: 10px;
+}
+
+.festival-subtitle {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #8b5e3c;
+  letter-spacing: 2px;
+}
+
+.festival-title {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 800;
+  color: #8c481f;
+  line-height: 1;
+}
+
+/* ==================================
+   HERO BANNER
+================================== */
+
+.festival-banner {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.festival-banner img {
+  width: 100%;
+  max-width: 280px;
+  object-fit: contain;
+}
+
+/* ==================================
+   GRID
+================================== */
+
+.festival-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+/* ==================================
+   CARD
+================================== */
+
+.festival-card {
+    background: rgba(255, 255, 255, 0.18);
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+
+  overflow: hidden;
+
+  transition: all 0.3s ease;
+
+  border-radius: 14px;
+
+  padding: 8px;
+
+  text-align: center;
+
+  min-height: 120px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  transition: all 0.25s ease;
+}
+
+.festival-card:hover {
+  transform: translateY(-2px);
+}
+
+.festival-card h4 {
+  font-size: 12px;
+  font-weight: 600;
+
+  color: #63351b;
+
+  line-height: 1.3;
+
+  margin: 0;
+}
+
+.festival-card img {
+  width: 100%;
+  height: 70px;
+
+  object-fit: contain;
+}
+
+/* ==================================
+   MOBILE
+================================== */
+
+@media (max-width: 480px) {
+  .festival-section {
+    display:grid;
+    /* margin: 10px; */
+    padding: 25px;
+    margin-top: 0;
+    background: linear-gradient(135deg, #F6D365, #FDA085);
+    
+
+    /* padding-top: 0; */
+  }
+
+  .festival-title {
+    font-size: 32px;
+  }
+
+  .festival-card {
+    min-height: 110px;
+  }
+
+  .festival-card img {
+    height: 60px;
+  }
+}
