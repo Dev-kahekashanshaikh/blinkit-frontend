@@ -1,6 +1,6 @@
 
 import { useState, useRef, useEffect } from "react";
-import "../styles//AccountSection.css";
+import "../styles/AccountSection.css";
 
 function AccountSection({ name, onLogout }) {
   const [isOpen, setIsOpen] = useState(false);

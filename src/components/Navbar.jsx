@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CartSection from "./CartSection";
-import AccountSection from "./AccountSection";
+import AccountSection from './AccountSection'
 import LocationSection from "./LocationSection";
 import { useCart } from "../context/CartContext";
 import { Navbar as BootstrapNavbar, Form } from "react-bootstrap";
@@ -97,7 +97,8 @@ const Navbar = ({ showMobileHero = false }) => {
         <div className="blinkit-actions-section">
          
 
-      {user ?   <AccountSection name={user.name} onLogout={logout}  /> : (
+      {user ?   <AccountSection name={user.name} onLogout={logout}  /> 
+      : (
             <button
               type="button"
               className="btn btn-outline-primary blinkit-login-button"
