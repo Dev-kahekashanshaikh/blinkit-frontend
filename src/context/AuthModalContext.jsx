@@ -8,8 +8,7 @@ import {
 
 const AuthModalContext = createContext(null);
 
-const API_URL = "http://localhost:4000/api/auth";
-
+  const API_URL = import.meta.env.VITE_API_URL;
 // All requests use cookies automatically through credentials: include.
 const apiRequest = async (endpoint, options = {}) => {
   const response = await fetch(`${API_URL}${endpoint}`, {

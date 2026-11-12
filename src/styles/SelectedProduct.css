@@ -186,7 +186,7 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 30px 20px 60px;
-  border: 2px solid red;
+ 
 }
 
 
@@ -1106,4 +1106,64 @@ align-items: first baseline;
     height: 21px;
   }
 
+}
+
+
+/* =========================================
+   FIX SELECTED PRODUCT OVERLAPPING ON MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+
+  .SelectedProduct-Container {
+    width: 100%;
+    height: auto !important;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .product-main-row {
+    height: auto !important;
+    min-height: 0 !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left-section {
+    width: 100%;
+    height: auto !important;
+    overflow: visible;
+  }
+
+  .Right-section {
+    width: 100%;
+    height: auto !important;
+    min-height: 0;
+  }
+
+  .product-info-section {
+    width: 100%;
+    height: auto !important;
+    margin-top: 20px;
+  }
+
+  .product-info-right {
+    height: auto !important;
+  }
+
+  .why-shop {
+    clear: both;
+  }
+
+  .product-details-row {
+    clear: both;
+  }
+
+  /* Similar products must appear after product details */
+  .parent-section > .products-section {
+    position: relative;
+    clear: both;
+    width: 100%;
+    margin-top: 25px;
+  }
 }

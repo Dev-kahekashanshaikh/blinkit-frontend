@@ -12,7 +12,7 @@ export function CategoryProvider({ children }) {
     const [categoryProducts, setCategoryProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-
+const API_URL = import.meta.env.VITE_API_URL;
 
     const fetchCategoryProducts = async (categoryName) => {
 
@@ -27,7 +27,7 @@ export function CategoryProvider({ children }) {
             //https://blinkit-backend-1-e6wf.onrender.com/product/getAllProducts
             //https://fakestoreapi.com/products
             const response = await fetch(
-                `https://blinkit-backend-1-e6wf.onrender.com/product/getAllProducts/category/${encodeURIComponent(category)}`
+                `${API_URL}/product/getAllProducts/category/${encodeURIComponent(category)}`
             );
 
             if (!response.ok) {

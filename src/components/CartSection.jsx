@@ -26,6 +26,8 @@ function CartSection({ show, handleClose }) {
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
   const [donationChecked, setDonationChecked] = useState(true);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   // Reset the success message after 3 seconds.
   useEffect(() => {
     if (!orderSuccess) return;
@@ -93,7 +95,7 @@ function CartSection({ show, handleClose }) {
         weight: item.weight || "",
       }));
 
-     const response = await fetch("http://localhost:4000/orders/mail", {
+     const response = await fetch(`${API_URL}/orders/mail`, {
   method: "POST",
   credentials: "include",
   headers: {

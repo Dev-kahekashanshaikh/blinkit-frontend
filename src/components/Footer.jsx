@@ -4,6 +4,7 @@ import '../styles/Footer.css';
 const Footer = () => {
     const [categories, setCategories] = useState([]);
 
+    const API_URL = import.meta.env.VITE_API_URL;
     const usefulLinks = [
         ['Blog', 'Partner', 'Recipes'],
         ['Privacy', 'Franchise', 'Bistro'],
@@ -14,7 +15,7 @@ const Footer = () => {
     ];
 
     useEffect(() => {
-        fetch('https://blinkit-backend-1-e6wf.onrender.com/product/getAllProducts')
+        fetch(`${API_URL}/product/getAllProducts`)
             .then(response => response.json())
             .then(data => {
                 const uniqueCategories = [

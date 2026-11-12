@@ -7,7 +7,7 @@ import ProductCard from '../components/ProductCard';
 import '../styles/SelectedProduct.css';
 import { useCategory } from '../context/CategoryContext';
 import ProductsGrid from '../components/ProductsGrid';
-import CategoryList from '../components/CategoryList';
+import AllProducts from './AllProducts'
 import '../styles/CategoryList.css'
 
 const SelectedProduct = () => {
@@ -44,13 +44,14 @@ const SelectedProduct = () => {
 
 
         const Product = decodeURIComponent(productId);
+        const API_URL = import.meta.env.VITE_API_URL;
 
         setLoading(true);
 //https://fakestoreapi.com/products
 //https://blinkit-backend-1-e6wf.onrender.com/product/getProductById
 //product/getProductById/
         fetch(
-            `https://blinkit-backend-1-e6wf.onrender.com/product/getProductById/${Product}`
+            `${API_URL}/product/getProductById/${Product}`
         )
             .then(response => response.json())
             .then(data => {
@@ -171,8 +172,7 @@ const SelectedProduct = () => {
                     ratingCount={ratingCount}
                 />
 
-                <hr></hr>
-
+          
 
 
 {/*==================================================================
@@ -188,8 +188,9 @@ map that list here we are passing category related data from categoryContext
 
 
 
-                <CategoryList />
+                
 
+                <AllProducts />
 
 
             </div>

@@ -19,6 +19,8 @@ const Chatbot = () => {
     },
   ]);
 
+
+    const API_URL = import.meta.env.VITE_API_URL;
   // Send message
   const handleSend = async () => {
     // Prevent empty message
@@ -44,7 +46,7 @@ const Chatbot = () => {
     try {
       // Call backend chatbot API
       const response = await fetch(
-        "http://localhost:4000/api/chat",
+        `${API_URL}/api/chat`,
         {
           method: "POST",
 

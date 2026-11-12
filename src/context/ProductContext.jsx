@@ -5,6 +5,8 @@ import {
   useState
 } from "react";
 
+
+
 const ProductContext = createContext();
 
 export function ProductProvider({ children }) {
@@ -13,6 +15,9 @@ export function ProductProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+
+
+  const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
 
 
@@ -21,7 +26,7 @@ export function ProductProvider({ children }) {
 //https://fakestoreapi.com/products
 //https://blinkit-backend-1-e6wf.onrender.com/product/getAllProducts
 
-    fetch("https://blinkit-backend-1-e6wf.onrender.com/product/getAllProducts")
+    fetch(`${API_URL}/product/getAllProducts`)
       .then(res => {
 
         if (!res.ok) {

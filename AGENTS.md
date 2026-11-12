@@ -21,7 +21,7 @@ Run these commands from the repository root after changes:
 
 ```bash
 npm run lint
-npm run build
+npm run build 
 ```
 
 Use `npm run dev` for browser checks during development. There is currently no test script in `package.json`.
